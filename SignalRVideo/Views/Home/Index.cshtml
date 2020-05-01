@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <img id="frameImg" width="800" height="600" />
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    "use strict";
+
+    const connection = new signalR.HubConnectionBuilder().withUrl("/videoHub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+
+
+connection.on("initSignal", function (imgBase64) {
+    $("#frameImg").attr("src",imgBase64);
+    console.log(imgBase64)
+});
+
+connection.start().then(function () {
+
+}).catch(function (err) {
+    return console.error(err.toString());
+});
+
+</script>
