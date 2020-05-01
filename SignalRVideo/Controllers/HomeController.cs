@@ -30,7 +30,7 @@ namespace SignalRVideo.Controllers
         }
 
         string rootPath = Directory.GetCurrentDirectory();
-        public async Task<IActionResult> SendFrame()
+        public async Task<IActionResult> StartSendingFrames()
         {
             byte[] imageFile = null;
             string[] dir = Directory.GetFiles(Path.Combine(rootPath, @"SamplePics\"), "*.jpg");
